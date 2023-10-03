@@ -15,5 +15,10 @@ namespace PizzaBillingApp
             MessageBox.Show("Your payment has been processed", "ASHTONS PERFECTED PIZZA");
             Application.Exit();
         }
+
+        private void Bill_Load(object sender, EventArgs e)
+        {
+            label1.Text = "Your Bill is: £" + String.Format("{0:.00}", Billing.totalCost);
+        }
     }
 }
