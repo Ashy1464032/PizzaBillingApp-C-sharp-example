@@ -12,6 +12,8 @@ namespace PizzaBillingApp
 {
     public partial class Form1 : Form
     {
+        public static double TotalCost;
+        Bill billForm = new Bill();
         public Form1()
         {
             InitializeComponent();
@@ -24,52 +26,58 @@ namespace PizzaBillingApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Bill billForm = new Bill();
-            double totalCost = 0.0;
             String selectedSize = comboBox1.SelectedItem.ToString();
             String selectedTopping = comboBox2.SelectedItem.ToString();
             String selectedCrust = comboBox3.SelectedItem.ToString();
             switch (selectedSize)
             {
                 case "9\u0022":
-                    totalCost += 2.0;
+                    TotalCost += 2.0;
                     break;
                 case "11\u0022":
-                    totalCost += 3.5;
+                    TotalCost += 3.5;
                     break;
                 case "14\u0022":
-                    totalCost += 5;
+                    TotalCost += 5;
                     break;
             }
             switch (selectedTopping)
             {
                 case "Cheese":
-                    totalCost += 1.3;
+                    TotalCost += 1.3;
                     break;
                 case "Pepperoni":
-                    totalCost += 2;
+                    TotalCost += 2;
                     break;
                 case "Meat feast":
-                    totalCost += 3.5;
+                    TotalCost += 3.5;
                     break;
                 case "Ham & pineapple":
-                    totalCost += 2.5;
+                    TotalCost += 2.5;
                     break;
             }
             switch (selectedCrust){
                 case "Normal":
-                    totalCost += 0.5;
+                    TotalCost += 0.5;
                     break;
                 case "Stuffed":
-                    totalCost += 1;
+                    TotalCost += 1;
                     break;
                 case "Thin":
-                    totalCost += 1;
+                    TotalCost += 1;
                     break;
             }
+        }
 
-            String total = String.Format("{0:.00}", totalCost);
-            ((Label)billForm.Controls["label1"]).Text = ("Your total cost is £" + total);
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            String km = String.Format("{0:.00}", TotalCost);
+            ((Label)billForm.Controls["label1"]).Text = ("Your total cost is £" + km);
             billForm.Show();
             this.Hide();
         }
